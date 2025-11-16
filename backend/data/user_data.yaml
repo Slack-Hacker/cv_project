@@ -1,0 +1,5 @@
+train: user_object/images
+val: user_object/images
+
+nc: 1
+names: ["object"]

@@ -1,0 +1,32 @@
+[
+  {
+    "image": "sheep1.jpg",
+    "reason": "bbox_touches_edge_or_full",
+    "bbox_px": [
+      0,
+      0,
+      332,
+      249
+    ]
+  },
+  {
+    "image": "sheep1.jpg",
+    "reason": "bbox_touches_edge_or_full",
+    "bbox_px": [
+      0,
+      0,
+      332,
+      249
+    ]
+  },
+  {
+    "image": "sheep1.jpg",
+    "reason": "bbox_touches_edge_or_full",
+    "bbox_px": [
+      0,
+      0,
+      332,
+      249
+    ]
+  }
+]

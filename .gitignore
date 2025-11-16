@@ -1,0 +1,19 @@
+# Virtual env
+.venv/
+venv/
+
+# Node modules
+node_modules/
+
+# Python cache
+__pycache__/
+
+# Weights and datasets
+data/cache/
+data/user_object/
+backend/app/weights/
+*.pt
+
+# System files
+.DS_Store
+Thumbs.db
