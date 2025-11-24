@@ -1,19 +1,35 @@
-# Virtual env
-.venv/
-venv/
-
-# Node modules
-node_modules/
-
-# Python cache
+# Python
 __pycache__/
+*.pyc
 
-# Weights and datasets
-data/cache/
-data/user_object/
-backend/app/weights/
-*.pt
+# Node
+node_modules/
+dist/
 
-# System files
-.DS_Store
-Thumbs.db
+# venv
+.venv/
+
+# YOLO runs
+backend/runs/
+
+# Temporary training folders
+backend/data/train_tmp/
+backend/data/train_status.json
+
+# Auto-labeled and user images
+backend/data/user_object/images/
+backend/data/user_object/labels/
+
+# Stream cache
+backend/data/stream_cache/
+
+# Detect input sample images
+backend/data/detect_input/
+
+# Build caches
+frontend/.vite/
+frontend/node_modules/
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+opencv-python
+numpy
+ultralytics
+Pillow
+requests
+watchfiles
+starlette

@@ -5,7 +5,9 @@ from app.api.auto_label_routes import router as al_router
 from app.api.manual_label import router as manual_label_router
 from app.api.detect_routes import router as detect_router
 from app.api.stream_routes import router as stream_router
+from app.api.train_routes import router as train_router
 from fastapi.middleware.cors import CORSMiddleware
+from app.api.label_status import router as label_status_router
 import os
 
 app = FastAPI(title="cv1 Project Backend")
@@ -15,6 +17,8 @@ app.include_router(al_router, prefix="/api")
 app.include_router(manual_label_router, prefix="/api")
 app.include_router(detect_router, prefix="/api")
 app.include_router(stream_router, prefix="/api")
+app.include_router(train_router, prefix="/api")
+app.include_router(label_status_router, prefix="/api")
 
 app.add_middleware(
     CORSMiddleware,

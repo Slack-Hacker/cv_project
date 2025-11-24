@@ -137,3 +137,36 @@ def run_auto_label_all():
             except Exception as e:
                 results["errors"].append({"image": fname, "error": str(e)})
     return results
+
+def auto_label_images(image_dir, label_dir):
+    """
+    Auto-label ALL images in image_dir and write YOLO txt labels to label_dir.
+    Does NOT move images or modify final dataset folders.
+    Returns a list of low-confidence image names.
+    """
+
+    os.makedirs(label_dir, exist_ok=True)
+    low_conf = []
+
+    for fname in os.listdir(image_dir):
+        if fname.lower().endswith((".jpg", ".jpeg", ".png")):
+            img_path = os.path.join(image_dir, fname)
+
+            ok, info, bbox = contour_auto_label(img_path)
+
+            name, _ = os.path.splitext(fname)
+            label_path = os.path.join(label_dir, f"{name}.txt")
+
+            if ok:
+                # Write YOLO normalized label for training
+                with open(label_path, "w") as f:
+                    f.write(info + "\n")
+            else:
+                # Record low confidence
+                low_conf.append({
+                    "image": fname,
+                    "reason": info,
+                    "bbox_px": bbox
+                })
+
+    return low_conf
