@@ -1,43 +1,37 @@
 export default function Home() {
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-6">
-      <h1 className="text-3xl font-bold">Welcome to cv1 Project</h1>
-      <p className="text-gray-700 text-lg leading-relaxed">
-        Train a custom YOLO model and run real-time object detection using your Android phone camera.
-      </p>
+    <div className="space-y-10">
+      <div className="text-center space-y-3">
+        <h1 className="text-4xl font-bold">Welcome to Thundrive CV Project</h1>
+        <p className="text-gray-600 text-lg">
+          Train your own object and detect it in real-time from your phone camera.
+        </p>
+      </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-
-        {/* Live Detection Card */}
-        <a href="/live">
-          <div className="p-6 bg-white rounded-lg shadow border hover:shadow-lg transition cursor-pointer">
-            <h2 className="text-xl font-semibold mb-2">Live Detection</h2>
-            <p className="text-gray-600">
-              View real-time detection from your Android camera feed.
-            </p>
-          </div>
+        <a
+          href="/live"
+          className="p-6 bg-white rounded-xl shadow border hover:shadow-lg transition transform hover:-translate-y-1"
+        >
+          <h2 className="text-xl font-semibold mb-1">Live Detection</h2>
+          <p className="text-gray-600">Real-time detection from your Android camera.</p>
         </a>
 
-        {/* Upload Detection */}
-        <a href="/upload">
-          <div className="p-6 bg-white rounded-lg shadow border hover:shadow-lg transition cursor-pointer">
-            <h2 className="text-xl font-semibold mb-2">Upload Detection</h2>
-            <p className="text-gray-600">
-              Upload an image and detect your custom object.
-            </p>
-          </div>
+        <a
+          href="/train"
+          className="p-6 bg-white rounded-xl shadow border hover:shadow-lg transition transform hover:-translate-y-1"
+        >
+          <h2 className="text-xl font-semibold mb-1">Train Model</h2>
+          <p className="text-gray-600">Upload images and train your YOLO model.</p>
         </a>
 
-        {/* Train Model */}
-        <a href="/train">
-          <div className="p-6 bg-white rounded-lg shadow border hover:shadow-lg transition cursor-pointer">
-            <h2 className="text-xl font-semibold mb-2">Train Model</h2>
-            <p className="text-gray-600">
-              Upload 10 images, auto-label, fix low-confidence labels and train YOLOv8n.
-            </p>
-          </div>
+        <a
+          href="/upload"
+          className="p-6 bg-white rounded-xl shadow border hover:shadow-lg transition transform hover:-translate-y-1"
+        >
+          <h2 className="text-xl font-semibold mb-1">Detect in Image</h2>
+          <p className="text-gray-600">Upload image and detect objects inside it.</p>
         </a>
-
       </div>
     </div>
   );

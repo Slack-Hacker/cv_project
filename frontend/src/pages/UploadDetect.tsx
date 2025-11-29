@@ -6,51 +6,51 @@ export default function UploadDetect() {
   const [preview, setPreview] = useState<string | null>(null);
   const [result, setResult] = useState<any>(null);
 
-  const handleUpload = async () => {
+  async function detect() {
     if (!file) return;
 
     const form = new FormData();
     form.append("file", file);
 
-    const res = await axios.post("/api/detect/image", form, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-
+    const res = await axios.post("/api/detect/image", form);
     setResult(res.data.result);
-  };
+  }
 
   return (
-    <div className="p-6 max-w-3xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold">Upload Detection</h1>
+    <div className="space-y-8">
+      <h1 className="text-3xl font-bold">Upload Detection</h1>
 
-      <input
-        type="file"
-        onChange={(e) => {
-          const f = e.target.files?.[0];
-          if (!f) return;
-          setFile(f);
-          setPreview(URL.createObjectURL(f));
-        }}
-        className="border p-2 rounded"
-      />
-
-      {preview && (
-        <img
-          src={preview}
-          alt="preview"
-          className="max-w-md border rounded shadow"
+      <div className="bg-white p-6 rounded-xl shadow border space-y-4">
+        <input
+          type="file"
+          accept="image/*"
+          className="border p-3 rounded-lg w-full"
+          onChange={(e) => {
+            const f = e.target.files?.[0];
+            if (!f) return;
+            setFile(f);
+            setPreview(URL.createObjectURL(f));
+          }}
         />
-      )}
 
-      <button
-        onClick={handleUpload}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-      >
-        Detect
-      </button>
+        {preview && (
+          <img
+            src={preview}
+            className="max-w-md rounded-lg border shadow"
+            alt="preview"
+          />
+        )}
+
+        <button
+          onClick={detect}
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        >
+          Detect
+        </button>
+      </div>
 
       {result && (
-        <div className="p-4 bg-white border rounded shadow space-y-2">
+        <div className="bg-white p-4 rounded-xl border shadow space-y-1 text-sm">
           <p className="font-semibold">
             {result.detected ? "✔ Detected" : "❌ Not Detected"}
           </p>
@@ -60,7 +60,13 @@ export default function UploadDetect() {
               <p>Region: {result.region}</p>
               <p>
                 Visible ≥30%:{" "}
-                <b className={result.visible_30_percent ? "text-green-600" : "text-red-600"}>
+                <b
+                  className={
+                    result.visible_30_percent
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }
+                >
                   {result.visible_30_percent ? "Yes" : "No"}
                 </b>
               </p>

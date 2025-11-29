@@ -1,33 +1,43 @@
-import Navbar from "./components/Navbar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+
+import Sidebar from "./components/Sidebar";
+import Loader from "./components/Loader";
 
 import Home from "./pages/Home";
-import LiveDetection from "./pages/LiveDetection";
 import UploadDetect from "./pages/UploadDetect";
+import LiveDetection from "./pages/LiveDetection";
 import TrainPage from "./pages/TrainPage";
-import ManualLabelPage from "./pages/ManualLabelPage";
 
 export default function App() {
+  const location = useLocation();
+
   return (
-    <>
-      <Navbar />
+    <div className="flex min-h-screen bg-gray-100 text-gray-900">
 
-      <div className="pt-16 px-4"> 
-        {/* Push content below navbar */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/live" element={<LiveDetection />} />
+      {/* Sidebar */}
+      <Sidebar />
 
-          {/* Upload + auto-label (Stage 3-4) */}
-          <Route path="/upload" element={<UploadDetect />} />
-
-          {/* User model training (Stage 9) */}
-          <Route path="/train" element={<TrainPage />} />
-
-          {/* Manual labeling UI (Stage 4 extended) */}
-          <Route path="/label/:img" element={<ManualLabelPage />} />
-        </Routes>
-      </div>
-    </>
+      {/* Main Content */}
+      <main className="flex-1 ml-64 p-8">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}
+            className="max-w-6xl mx-auto space-y-8"
+          >
+            <Routes location={location}>
+              <Route path="/" element={<Home />} />
+              <Route path="/upload" element={<UploadDetect />} />
+              <Route path="/live" element={<LiveDetection />} />
+              <Route path="/train" element={<TrainPage />} />
+            </Routes>
+          </motion.div>
+        </AnimatePresence>
+      </main>
+    </div>
   );
 }
